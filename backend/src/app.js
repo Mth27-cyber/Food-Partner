@@ -7,8 +7,9 @@ const foodPartnerRoutes = require('./routes/food-partner.routes');
 const cors = require('cors');
 
 const app = express();
+app.set('trust proxy', 1);
 app.use(cors({
-    origin: ["http://localhost:5173", "http://127.0.0.1:5173"],
+    origin: [process.env.FRONTEND_URL, "http://localhost:5173", "http://127.0.0.1:5173"].filter(Boolean),
     credentials: true
 }));
 app.use(cookieParser());
